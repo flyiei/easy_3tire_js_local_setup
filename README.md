@@ -16,7 +16,22 @@ The demo consists of three services:
 - Tilt ([installation instructions](https://docs.tilt.dev/install.html))
 - Node.js and npm (for local development)
 
+
 ## Getting Started
+
+### Clone the repositories in the following order:
+
+```bash
+# 1. Clone the main setup repository
+git clone git@github.com:flyiei/easy_3tire_js_local_setup.git
+cd easy_3tire_js_local_setup
+
+# 2. Clone the API repository
+git clone git@github.com:flyiei/easy_3tire_js_api.git
+
+# 3. Clone the frontend repository
+git clone git@github.com:flyiei/easy_3tire_js_frontend.git
+```
 
 ### Running with Docker Compose only
 
