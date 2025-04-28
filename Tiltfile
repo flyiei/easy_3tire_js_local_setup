@@ -20,17 +20,21 @@ dc_resource('springboot-api',
   trigger_mode=TRIGGER_MODE_AUTO,
   auto_init=True)
 
-# Spring Boot specific file watching
-# This watches all .java, .gradle, and application properties files
+# Spring Boot file watching - adding a custom watcher for files that might
+# not trigger an automatic restart via Spring DevTools
 custom_build(
   'springboot-api-watcher',
   'echo "Spring Boot file change detected"',
   deps=['./easy_3tire_springboot_api/src', './easy_3tire_springboot_api/build.gradle'],
   live_update=[
+    # Fall back to a full rebuild for certain files - must be first!
     fall_back_on(['./easy_3tire_springboot_api/build.gradle', './easy_3tire_springboot_api/settings.gradle']),
+    # Sync the source files to the container
+    sync('./easy_3tire_springboot_api/src', '/app/src'),
+    # Run a command when files change
+    run('touch /app/src/main/resources/restart.trigger')
   ],
-  skips_local_docker=True,
-  auto_init=False
+  skips_local_docker=True
 )
 
 # Frontend service
