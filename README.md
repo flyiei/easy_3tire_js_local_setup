@@ -20,7 +20,32 @@ The demo consists of four services:
 
 ## Getting Started
 
-### Clone the repositories in the following order:
+### Option 1: Quick Setup (Recommended)
+
+Use the provided setup script to automatically clone all repositories and start the services:
+
+```bash
+# 1. Clone the main setup repository
+git clone git@github.com:flyiei/easy_3tire_js_local_setup.git
+cd easy_3tire_js_local_setup
+
+# 2. Make the setup script executable
+chmod +x setup.sh
+
+# 3. Run the setup script
+./setup.sh
+```
+
+The script will:
+- Clone all required repositories
+- Check for Tilt installation
+- Start all services using Tilt
+
+### Option 2: Manual Setup
+
+If you prefer to set up manually, follow these steps:
+
+#### Clone the repositories in the following order:
 
 ```bash
 # 1. Clone the main setup repository
@@ -88,6 +113,7 @@ project/
 ├── db/                         # Database initialization
 ├── docker-compose.yml          # Docker Compose configuration
 ├── Tiltfile                    # Tilt configuration
+├── setup.sh                    # Automated setup script
 └── README.md                   # Documentation
 ```
 
