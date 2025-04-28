@@ -20,7 +20,7 @@ services:
 
   # API service
   api:
-    build: ./api
+    build: ./easy_3tire_js_api
     depends_on:
       db:
         condition: service_healthy
@@ -30,13 +30,13 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./api:/app
+      - ./easy_3tire_js_api:/app
       - /app/node_modules
     command: npm run dev
 
   # Frontend service
   frontend:
-    build: ./frontend
+    build: ./easy_3tire_js_frontend
     depends_on:
       - api
     environment:
@@ -44,7 +44,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./frontend:/app
+      - ./easy_3tire_js_frontend:/app
       - /app/node_modules
     command: npm start
 
