@@ -38,7 +38,9 @@ docker-compose down
 tilt up
 
 # Start specific services only
-tilt up api frontend
+tilt up -- db api
+tilt up -- api frontend
+tilt up -- db frontend
 
 # Access Tilt UI
 # Open http://localhost:10350/ in your browser
@@ -61,13 +63,37 @@ Tilt provides several advantages for local development:
 
 ```
 project/
-├── api/               # API service
-├── frontend/          # Frontend application
-├── db/                # Database initialization
-├── docker-compose.yml # Docker Compose configuration
-├── Tiltfile           # Tilt configuration
-└── README.md          # Documentation
+├── easy_3tire_js_api/      # API service
+├── easy_3tire_js_frontend/ # Frontend application
+├── db/                     # Database initialization
+├── docker-compose.yml      # Docker Compose configuration
+├── Tiltfile                # Tilt configuration
+└── README.md               # Documentation
 ```
+
+## Service Access
+
+- **Frontend**: http://localhost:8080
+- **API**: http://localhost:3000
+- **Database**: PostgreSQL on port 5432
+
+## Service Details
+
+### Frontend
+- React application running on port 80 in container (mapped to port 8080)
+- Source code in `easy_3tire_js_frontend/src/`
+- Main component in `app.js`
+
+### API
+- Node.js/Express application running on port 3000
+- RESTful endpoints at `/api/items`
+- Health check at `/health`
+- Root endpoint with API documentation at `/`
+
+### Database
+- PostgreSQL database
+- Initial schema defined in `db/init.sql`
+- Credentials in docker-compose.yml (for development only)
 
 ## Customization
 
