@@ -1,8 +1,8 @@
 # Ignore api directory
-api/
+easy_3tire_js_api/
 
 # Ignore db directory  
-frontend/
+easy_3tire_js_frontend/
 
 # OS specific files
 .DS_Store
