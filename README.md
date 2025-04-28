@@ -13,10 +13,15 @@ The demo consists of four services:
 
 ## Prerequisites
 
+**Required for running the application:**
 - Docker and Docker Compose
 - Tilt ([installation instructions](https://docs.tilt.dev/install.html))
-- Node.js and npm (for local development)
-- Java 17 or higher (for Spring Boot development)
+
+**Only needed if developing outside containers:**
+- Node.js and npm (for local frontend/API development)
+- Java 17 or higher (for local Spring Boot development)
+
+> Note: If you're only running the application using containers (with Docker and Tilt), you don't need to install Node.js or Java on your host machine.
 
 ## Getting Started
 
@@ -37,8 +42,8 @@ chmod +x setup.sh
 ```
 
 The script will:
+- Check for Docker and Tilt installation
 - Clone all required repositories
-- Check for Tilt installation
 - Start all services using Tilt
 
 ### Option 2: Manual Setup
