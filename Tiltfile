@@ -1,6 +1,9 @@
 # Enable Docker Compose
 docker_compose('docker-compose.yml')
 
+# Suppress warning for springboot-api-watcher (it's a helper, not used directly)
+update_settings(suppress_unused_image_warnings=["springboot-api-watcher"])
+
 # Configure resources with labels and dependencies
 dc_resource('db', 
   labels=['database'],
