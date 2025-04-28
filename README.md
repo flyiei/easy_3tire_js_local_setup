@@ -4,18 +4,19 @@ This project demonstrates a local development setup for a microservices architec
 
 ## Architecture
 
-The demo consists of three services:
+The demo consists of four services:
 
 1. **Frontend**: React application for the user interface
 2. **API**: Node.js/Express service that handles business logic
-3. **Database**: PostgreSQL database for data persistence
+3. **Spring Boot API**: Java-based REST API service 
+4. **Database**: PostgreSQL database for data persistence
 
 ## Prerequisites
 
 - Docker and Docker Compose
 - Tilt ([installation instructions](https://docs.tilt.dev/install.html))
 - Node.js and npm (for local development)
-
+- Java 17 or higher (for Spring Boot development)
 
 ## Getting Started
 
@@ -31,6 +32,9 @@ git clone git@github.com:flyiei/easy_3tire_js_api.git
 
 # 3. Clone the frontend repository
 git clone git@github.com:flyiei/easy_3tire_js_frontend.git
+
+# 4. Clone the Spring Boot API repository
+git clone git@github.com:flyiei/easy_3tire_springboot_api.git
 ```
 
 ### Running with Docker Compose only
@@ -55,7 +59,7 @@ tilt up
 # Start specific services only
 tilt up -- db api
 tilt up -- api frontend
-tilt up -- db frontend
+tilt up -- db frontend springboot-api
 
 # Access Tilt UI
 # Open http://localhost:10350/ in your browser
@@ -78,18 +82,20 @@ Tilt provides several advantages for local development:
 
 ```
 project/
-├── easy_3tire_js_api/      # API service
-├── easy_3tire_js_frontend/ # Frontend application
-├── db/                     # Database initialization
-├── docker-compose.yml      # Docker Compose configuration
-├── Tiltfile                # Tilt configuration
-└── README.md               # Documentation
+├── easy_3tire_js_api/          # Node.js API service
+├── easy_3tire_js_frontend/     # React Frontend application
+├── easy_3tire_springboot_api/  # Spring Boot API service
+├── db/                         # Database initialization
+├── docker-compose.yml          # Docker Compose configuration
+├── Tiltfile                    # Tilt configuration
+└── README.md                   # Documentation
 ```
 
 ## Service Access
 
 - **Frontend**: http://localhost:8080
 - **API**: http://localhost:3000
+- **Spring Boot API**: http://localhost:8081
 - **Database**: PostgreSQL on port 5432
 
 ## Service Details
@@ -104,6 +110,12 @@ project/
 - RESTful endpoints at `/api/items`
 - Health check at `/health`
 - Root endpoint with API documentation at `/`
+
+### Spring Boot API
+- Java Spring Boot application running on port 8080 in container (mapped to port 8081)
+- RESTful endpoints at `/api/spring/items`
+- Uses Gradle for build automation
+- Features automatic code reloading with Spring DevTools
 
 ### Database
 - PostgreSQL database

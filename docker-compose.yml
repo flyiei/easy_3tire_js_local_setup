@@ -34,14 +34,31 @@ services:
       - /app/node_modules
     command: npm run dev
 
+  # Spring Boot API service
+  springboot-api:
+    build: ./easy_3tire_springboot_api
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/microservices_db
+      SPRING_DATASOURCE_USERNAME: devuser
+      SPRING_DATASOURCE_PASSWORD: devpassword
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./easy_3tire_springboot_api:/app
+
   # Frontend service
   frontend:
     build: ./easy_3tire_js_frontend
     depends_on:
       - api
+      - springboot-api
     environment:
       REACT_APP_API_URL: http://localhost:3000
-      # PORT: 80
+      REACT_APP_SPRINGBOOT_API_URL: http://localhost:8081
+      PORT: 80
     ports:
       - "8080:80"
     volumes:

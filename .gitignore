@@ -4,6 +4,9 @@ easy_3tire_js_api/
 # Ignore db directory  
 easy_3tire_js_frontend/
 
+# Ignore springboot-api directory
+easy_3tire_springboot_api/
+
 # OS specific files
 .DS_Store
 Thumbs.db
