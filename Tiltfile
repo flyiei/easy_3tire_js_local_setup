@@ -18,7 +18,7 @@ dc_resource('api',
 
 # Spring Boot API service
 dc_resource('springboot-api',
-  labels=['backend', 'java'],
+  labels=['backend'],
   resource_deps=['db'],
   trigger_mode=TRIGGER_MODE_AUTO,
   auto_init=True)
