@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+  # Database service
+  db:
+    build: ./db
+    environment:
+      POSTGRES_PASSWORD: devpassword
+      POSTGRES_USER: devuser
+      POSTGRES_DB: microservices_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U devuser"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # API service
+  api:
+    build: ./api
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://devuser:devpassword@db:5432/microservices_db
+      NODE_ENV: development
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./api:/app
+      - /app/node_modules
+    command: npm run dev
+
+  # Frontend service
+  frontend:
+    build: ./frontend
+    depends_on:
+      - api
+    environment:
+      REACT_APP_API_URL: http://localhost:3000
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm start
+
+volumes:
+  db-data:

@@ -1,0 +1,15 @@
+# Ignore api directory
+api/
+
+# Ignore db directory  
+db/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo 
